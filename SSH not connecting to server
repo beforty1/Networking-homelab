@@ -1,0 +1,60 @@
+sailormars@sailormars-VirtualBox:~$ script screen.log2
+Script started, output log file is 'screen.log2'.
+sailormars@sailormars-VirtualBox:~$ ls -l ~/.ssh
+total 0
+-rw------- 1 sailormars sailormars 0 Sep 10 23:46 authorized_keys
+sailormars@sailormars-VirtualBox:~$ ls -al ~/.ssh
+total 8
+drwx------  2 sailormars sailormars 4096 Sep 10 23:46 .
+drwxr-x--- 16 sailormars sailormars 4096 Sep 12 13:59 ..
+-rw-------  1 sailormars sailormars    0 Sep 10 23:46 authorized_keys
+sailormars@sailormars-VirtualBox:~$ ssh-keygen
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/sailormars/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/sailormars/.ssh/id_ed25519
+Your public key has been saved in /home/sailormars/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:REDACTED sailormars@sailormars-VirtualBox
+The key's randomart image is:
+REDACTED
+sailormars@sailormars-VirtualBox:~$ ls -l ~/.ssh
+total 8
+-rw------- 1 sailormars sailormars   0 Sep 10 23:46 authorized_keys
+-rw------- 1 sailormars sailormars 484 Sep 12 14:02 id_ed25519
+-rw-r--r-- 1 sailormars sailormars 114 Sep 12 14:02 id_ed25519.pub
+sailormars@sailormars-VirtualBox:~$ ls -al ~/.ssh
+total 16
+drwx------  2 sailormars sailormars 4096 Sep 12 14:02 .
+drwxr-x--- 16 sailormars sailormars 4096 Sep 12 13:59 ..
+-rw-------  1 sailormars sailormars    0 Sep 10 23:46 authorized_keys
+-rw-------  1 sailormars sailormars  484 Sep 12 14:02 id_ed25519
+-rw-r--r--  1 sailormars sailormars  114 Sep 12 14:02 id_ed25519.pub
+sailormars@sailormars-VirtualBox:~$ ssh-copy-id -v sailor-pluto@172.16.0.0
+Illegal option -v
+Usage: /usr/bin/ssh-copy-id [-h|-?|-f|-n|-s|-x] [-i [identity_file]] [-p port] [-F alternative ssh_config file] [-t target_path] [[-o <ssh -o options>] ...] [user@]hostname
+	-f: force mode -- copy keys without trying to check if they are already installed
+	-n: dry run    -- no keys are actually copied
+	-s: use sftp   -- use sftp instead of executing remote-commands. Can be useful if the remote only allows sftp
+	-x: debug      -- enables -x in this shell, for debugging
+	-h|-?: print this help
+sailormars@sailormars-VirtualBox:~$ ssh-copy-id sailor-pluto@172.16.0.0
+^Z
+[1]+  Stopped                 ssh-copy-id sailor-pluto@172.16.0.0
+sailormars@sailormars-VirtualBox:~$ ssh-copy-id pluto@172.16.0.0
+^Z
+[2]+  Stopped                 ssh-copy-id pluto@172.16.0.0
+sailormars@sailormars-VirtualBox:~$ ssh -v sailor-pluto@172.16.0.0
+OpenSSH_9.6p1 Ubuntu-3ubuntu13.5, OpenSSL 3.0.13 30 Jan 2024
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files
+debug1: /etc/ssh/ssh_config line 21: Applying options for *
+debug1: Connecting to 172.16.0.0 [172.16.0.0] port 22.
+exit
+^Z
+[3]+  Stopped                 ssh -v sailor-pluto@172.16.0.0
+sailormars@sailormars-VirtualBox:~$ exit
+exit
+There are stopped jobs.
+sailormars@sailormars-VirtualBox:~$ 
